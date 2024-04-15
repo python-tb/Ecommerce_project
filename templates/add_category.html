@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Category page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2 class="p-2">User Add Category here</h2>
+    <br />
+    <div class="container">
+      <form action="/dashboard/add_category" method="post">
+        {% csrf_token %}
+        <label for="email" class="form-label">Category Name</label> <br />
+        <input type="text" id="" name="name" /><br />
+
+        <label for="age" class="form-label">Category Discount </label> <br />
+        <input type="number" id="" name="discount" /><br />
+
+        <label for="address" class="form-label">Category Image</label> <br />
+        <input type="file" id="" name="image" /><br />
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-dark" href="/dashboard/show_category" role="button"
+          >Back to View Category
+        </a>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Shop Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-12 ">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <h1>{{ category_name }}</h1>
+                        </div>
+                        <div class="ml-2">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                    data-toggle="dropdown">Sort Products</button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!--    here l2h and h2l url randomly taken -->
+                                    <a class="dropdown-item" href="/sort/l2h">Price (Low to High)</a>   
+                                    <a class="dropdown-item" href="/sort/h2l">Price (High to Low)</a>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                {% for product in page_obj %}
+                <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{ product.imageURL }}" alt="">
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href="/add_to_cart/{{product.id}}"><i
+                                        class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="/add_wishlist/{{product.id}}"><i class="far fa-heart"></i></a>
+                           
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="/detail/{{product.id}}">{{ product.name }}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>Rs.{{ product.price }}/-</h5>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                              
+                               <small>({{ product.category }})</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                <!--   Pagination Area     -->
+
+                <div class="col-12">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            
+                            {% if page_obj.has_previous %}
+                            <li class="page-item active"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+                            {% endif %}
+
+                            {% for n in totalpageList %}
+                            <li class="page-item "><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="page-item active "><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+                            {% endif %}
+                                    
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<!-- Shop End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+<!-- Contact Javascript File -->
+<script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+<script src="{% static 'mail/contact.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
+{% endblock %}
